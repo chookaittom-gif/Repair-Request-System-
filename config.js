@@ -3,6 +3,21 @@
 const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxEPeVVR0OzN8A3GrfDAiXVuI5TMiDzJpyKO2hNXsxQihdjHgdfy6oN794OBlEtWG7g/exec';
 
 (function() {
+  // ดักจับ Query Params เพื่อสลับหน้าอัตโนมัติสำหรับ GitHub Pages
+  if (typeof window !== 'undefined' && window.location && window.location.search) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('page');
+    if (pageParam) {
+      let target = pageParam + '.html';
+      if (pageParam === 'index' || pageParam === 'summary') {
+        target = 'index.html';
+      }
+      const hash = window.location.hash || '';
+      window.location.replace(target + hash);
+      return;
+    }
+  }
+
   // ตรวจสอบว่ารันอยู่ภายนอก Google Apps Script (เช่น GitHub Pages) หรือไม่
   if (typeof google === 'undefined' || !google.script || !google.script.run) {
     window.google = window.google || {};
@@ -58,7 +73,13 @@ const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxEPeVVR0OzN
             .then(data => {
               if (data && data.success) {
                 if (successCallback) {
-                  const resultData = data.data !== undefined ? data.data : data;
+                  let resultData = data.data !== undefined ? data.data : data;
+                  
+                  // ดักจับและเปลี่ยนแปลง redirectUrl สำหรับ doLogin
+                  if (action === 'doLogin' && resultData && resultData.redirectUrl) {
+                    resultData.redirectUrl = 'dashboard.html';
+                  }
+                  
                   successCallback(resultData);
                 }
               } else {
@@ -89,5 +110,18 @@ const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxEPeVVR0OzN
     });
     
     console.log("🚀 Google Apps Script Polyfill activated for GitHub Pages.");
+    
+    // ทดสอบยิง Health Check ทันทีเพื่อตรวจสุขภาพ API
+    setTimeout(function() {
+      console.log("📡 Testing API Health...");
+      window.google.script.run
+        .withSuccessHandler(function(res) {
+          console.log("✅ API Health Check PASSED:", res);
+        })
+        .withFailureHandler(function(err) {
+          console.error("❌ API Health Check FAILED:", err);
+        })
+        .apiHealthCheck();
+    }, 1000);
   }
 })();
