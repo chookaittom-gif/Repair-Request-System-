@@ -54,6 +54,8 @@ const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxEPeVVR0OzN
               return;
             }
             
+            console.log('[API CALL]', action, args);
+            
             // ใช้ text/plain เพื่อเลี่ยง CORS Preflight OPTIONS
             fetch(url, {
               method: 'POST',
@@ -71,9 +73,23 @@ const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxEPeVVR0OzN
               return res.json();
             })
             .then(data => {
+              console.log('[API RESPONSE]', action, data);
               if (data && data.success) {
                 if (successCallback) {
-                  let resultData = data.data !== undefined ? data.data : data;
+                  let resultData = data;
+                  
+                  // unwrap เฉพาะ action ที่ frontend คาดหวังผลลัพธ์ดิบ (เช่น Array หรือค่าเดี่ยว)
+                  const actionsToUnwrap = [
+                    'getTechnicians',
+                    'getAvailableReportMonths',
+                    'listReports',
+                    'getUrl',
+                    'getAvailableStockReportMonths'
+                  ];
+                  
+                  if (actionsToUnwrap.indexOf(action) !== -1 && data.data !== undefined) {
+                    resultData = data.data;
+                  }
                   
                   // ดักจับและเปลี่ยนแปลง redirectUrl สำหรับ doLogin
                   if (action === 'doLogin' && resultData && resultData.redirectUrl) {
