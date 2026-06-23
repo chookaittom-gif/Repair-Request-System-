@@ -3803,14 +3803,31 @@ function nextFrame(fn) {
 
    
     function navigateToPage(page) {
-        // สำหรับหน้าหลัก (index) ให้ใช้ URL หลักโดยตรง
-        const targetUrl = (page && page !== 'index')
-            ? baseUrl + '?page=' + page
-            : baseUrl;
+        const route = String(page || 'index').trim();
+        const [pageName, hash = ''] = route.split('#');
+
+        const routes = {
+            index: 'index.html',
+            summary: 'index.html',
+            dashboard: 'dashboard.html',
+            login: 'login.html',
+            stock: 'stock.html'
+        };
+
+        const targetFile = routes[pageName] || 'index.html';
+        const targetUrl = targetFile + (hash ? '#' + hash : '');
 
         console.log('Navigating to:', targetUrl);
-        // ใช้ window.top.location.href เพื่อเปลี่ยนหน้าของเบราว์เซอร์หลัก
-        window.top.location.href = targetUrl;
+        
+        try {
+            if (window.top && window.top.location) {
+                window.top.location.href = targetUrl;
+                return;
+            }
+        } catch (e) {
+            console.warn('window.top blocked, using window.location.href:', e);
+        }
+        window.location.href = targetUrl;
     }
 
         // === INITIALIZATION ===
