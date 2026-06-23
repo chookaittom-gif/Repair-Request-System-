@@ -2,7 +2,6 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png">
     <script src="config.js"></script>
     <script>window.BASE_URL = '<?= baseUrl ?>';</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -3721,7 +3720,8 @@ const baseUrl = '<?= baseUrl ?>'.includes('baseUrl')
 function buildImageUrl(raw) {
   const id = normalizeDriveFileId(raw);
   if (!id) return '';
-  return baseUrl + '?action=serveImage&id=' + encodeURIComponent(id);
+  const apiBase = (typeof APP_SCRIPT_API_URL !== 'undefined') ? APP_SCRIPT_API_URL : baseUrl;
+  return apiBase + '?action=serveImage&id=' + encodeURIComponent(id);
 }
 
 function normalizeText(value) {
@@ -3803,28 +3803,14 @@ function nextFrame(fn) {
 
    
     function navigateToPage(page) {
-        const targetPage = page || 'index';
-        const isGithubPages = location.hostname.includes('github.io') || location.pathname.endsWith('.html');
-
-        let targetUrl;
-
-        if (isGithubPages) {
-            const pageMap = {
-                index: 'index.html',
-                dashboard: 'dashboard.html',
-                login: 'login.html',
-                stock: 'stock.html'
-            };
-
-            targetUrl = pageMap[targetPage] || 'index.html';
-        } else {
-            targetUrl = (targetPage && targetPage !== 'index')
-                ? baseUrl + '?page=' + encodeURIComponent(targetPage)
-                : baseUrl;
-        }
+        // สำหรับหน้าหลัก (index) ให้ใช้ URL หลักโดยตรง
+        const targetUrl = (page && page !== 'index')
+            ? baseUrl + '?page=' + page
+            : baseUrl;
 
         console.log('Navigating to:', targetUrl);
-        window.location.href = targetUrl;
+        // ใช้ window.top.location.href เพื่อเปลี่ยนหน้าของเบราว์เซอร์หลัก
+        window.top.location.href = targetUrl;
     }
 
         // === INITIALIZATION ===

@@ -2,7 +2,6 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png">
     <script src="config.js"></script>
     <script>
         window.baseUrl = '<?= baseUrl ?>';
@@ -20,6 +19,8 @@
         }
 
         function logout() {
+            localStorage.removeItem('userInfo');
+            sessionStorage.clear();
             var url = window.baseUrl + '?action=logout';
             window.top.location.href = url;
         }
@@ -2433,7 +2434,7 @@ body {
             processSelectedFiles(files);
         }
 
-        async function processSelectedFiles(files) {
+        function processSelectedFiles(files) {
             const imageFiles = files.filter(file => file.type.startsWith('image/'));
             if (imageFiles.length === 0) {
                 showAlert('error', 'กรุณาเลือกไฟล์รูปภาพเท่านั้น');
@@ -2447,13 +2448,13 @@ body {
             }
 
             const filesToProcess = imageFiles.slice(0, availableSlots);
-            for (const file of filesToProcess) {
+            filesToProcess.forEach(file => {
                 if (file.size > MAX_FILE_SIZE) {
                     showAlert('error', `ไฟล์ ${file.name} มีขนาดใหญ่เกิน 5MB`);
-                    continue;
+                    return;
                 }
-                await addImageToPreview(file);
-            }
+                addImageToPreview(file);
+            });
             if (imageFiles.length > availableSlots) {
                 showAlert('info', `เลือกรูปภาพได้อีก ${availableSlots} รูปเท่านั้น (ระบบได้เพิ่มรูปภาพ ${filesToProcess.length} รูปแรกให้แล้ว)`);
             }
