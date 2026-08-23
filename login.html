@@ -513,7 +513,7 @@
     <div class="login-container">
         <div class="login-header">
             <div class="login-icon">
-                <img id="loginLogoImg" src="./SDULP-FIX.png" alt="โลโก้ระบบแจ้งซ่อม" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                <img id="loginLogoImg" src="https://raw.githubusercontent.com/chookaittom-gif/Repair-Request-System-/main/SDULP-FIX.png" alt="โลโก้ระบบแจ้งซ่อม" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
             </div>
             <h1 class="login-title">เข้าสู่ระบบ</h1>
             <p class="login-subtitle">สำหรับผู้ดูแลระบบและช่างเทคนิค</p>
@@ -1040,28 +1040,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   window.addEventListener('orientationchange', setVH, { passive: true });
 }
 
-function loadDynamicLogo() {
-  try {
-    if (typeof google !== 'undefined' && google.script && google.script.run) {
-      google.script.run
-        .withSuccessHandler(function(url) {
-          if (url) {
-            const logoEl = document.getElementById('loginLogoImg');
-            if (logoEl) logoEl.src = url;
-          }
-        })
-        .withFailureHandler(function(err) {
-          console.warn('Could not fetch dynamic logo:', err);
-        })
-        .getLogoPublicUrl();
-    }
-  } catch (e) {
-    console.warn('loadDynamicLogo error:', e);
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    loadDynamicLogo();
     initMobileRuntime();
     checkExistingLogin();
     document.getElementById('resetPasswordForm').addEventListener('submit', submitPasswordReset);
