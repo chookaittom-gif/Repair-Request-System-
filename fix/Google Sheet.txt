@@ -1,0 +1,15 @@
+const CONFIG = {
+  SPREADSHEET_ID:   '1ss9IxtTadAXlSqLxeLeJiBJiEOyNLRhCNzVRgiMWpAg', // << 🔴 ใส่ ID ของ Google Sheet
+  SHEET_NAME:       'รายการแจ้งซ่อมทั้งหมด',                           // << 🔴 ชื่อชีตหลัก
+  USER_SHEET_NAME:  'users',                                      // << 🔴 ชื่อชีตผู้ใช้
+  TEMPLATE_ID:      '1LJ4-UJb0YDG3BhxVObveqTQ94pJuMrRn5T5YLq-R0FQ', // << 🔴 ID ของ Google Docs Template
+  TARGET_FOLDER_ID: '1rnU9f_ocrzYBZcG_gco6z9bwrvSGjTLy',        // << 🔴 ID โฟลเดอร์เก็บเอกสาร
+  IMAGE_FOLDER_ID:  '1y4_3X9k7Cqiaq7CGpNI7SuLaNiqN6uKa',          // << 🔴 ID โฟลเดอร์เก็บรูปภาพ
+  FONT_FAMILY:      'TH SarabunPSK',
+  MONTHS_TH: [
+    'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+  ],
+  TELEGRAM_BOT_TOKEN: '7853279472:AAFtiwvE_394_RJEGhG2x8GuiCoOC2DWuHs',
+  TELEGRAM_CHAT_ID: '-4985195126'
+};

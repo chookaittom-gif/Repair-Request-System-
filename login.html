@@ -2,7 +2,6 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png">
     <script src="config.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เข้าสู่ระบบ - ระบบแจ้งซ่อมออนไลน์</title>
@@ -514,7 +513,7 @@
     <div class="login-container">
         <div class="login-header">
             <div class="login-icon">
-                <img src="https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png" alt="โลโก้ระบบแจ้งซ่อม" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                <img id="loginLogoImg" src="<?= typeof logoUrl !== 'undefined' ? logoUrl : 'https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png' ?>" onerror="this.onerror=null; this.src='https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png';" alt="โลโก้ระบบแจ้งซ่อม" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
             </div>
             <h1 class="login-title">เข้าสู่ระบบ</h1>
             <p class="login-subtitle">สำหรับผู้ดูแลระบบและช่างเทคนิค</p>
@@ -1041,7 +1040,28 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   window.addEventListener('orientationchange', setVH, { passive: true });
 }
 
+function loadDynamicLogo() {
+  try {
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run
+        .withSuccessHandler(function(url) {
+          if (url) {
+            const logoEl = document.getElementById('loginLogoImg');
+            if (logoEl) logoEl.src = url;
+          }
+        })
+        .withFailureHandler(function(err) {
+          console.warn('Could not fetch dynamic logo:', err);
+        })
+        .getLogoPublicUrl();
+    }
+  } catch (e) {
+    console.warn('loadDynamicLogo error:', e);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    loadDynamicLogo();
     initMobileRuntime();
     checkExistingLogin();
     document.getElementById('resetPasswordForm').addEventListener('submit', submitPasswordReset);

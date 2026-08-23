@@ -1,0 +1,18 @@
+const CONFIG = {
+  SPREADSHEET_ID:   '1T8KBzzCTP1wxV3N_tytjskGGgfFiy2CzTwdKiGHcVdI',
+  SHEET_NAME:       'รายการแจ้งซ่อมทั้งหมด',
+  USER_SHEET_NAME:  'users',
+  TEMPLATE_ID:      '1LJ4-UJb0YDG3BhxVObveqTQ94pJuMrRn5T5YLq-R0FQ',
+  TARGET_FOLDER_ID: '1rnU9f_ocrzYBZcG_gco6z9bwrvSGjTLy',
+  IMAGE_FOLDER_ID:  '1y4_3X9k7Cqiaq7CGpNI7SuLaNiqN6uKa',
+  FONT_FAMILY:      'TH SarabunPSK',
+  MONTHS_TH: [
+    'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+  ],
+  TELEGRAM_BOT_TOKEN: '7853279472:AAFtiwvE_394_RJEGhG2x8GuiCoOC2DWuHs',
+  TELEGRAM_CHAT_ID:   '-4985195126',
+
+  // 🔽 โลโก้รายงาน PDF
+  REPORT_LOGO_FILE_ID: '1-TsKg4J-cxs-b-q0jCi9uioIVH5WCfJM'
+};

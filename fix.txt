@@ -1,0 +1,44 @@
+config.js:128 🚀 Google Apps Script Polyfill activated for GitHub Pages.
+dashboard.html:3822 🚀 Initializing dashboard system (Berry Version)...
+dashboard.html:3860 User logged in: Chookait Role: admin
+dashboard.html:4040 👨‍🔧 Loading technicians from Google Sheet...
+config.js:57 [API CALL] getTechnicians Array(0)
+dashboard.html:4161 Loading dashboard data.
+config.js:57 [API CALL] getDashboardData Array(0)
+dashboard.html:6943 🗓️ Loading available report months...
+config.js:57 [API CALL] getAvailableReportMonths Array(0)
+config.js:57 [API CALL] getUrl Array(0)
+config.js:132 📡 Testing API Health...
+config.js:57 [API CALL] apiHealthCheck Array(0)
+config.js:76 [API RESPONSE] getUrl Object
+dashboard.html:3835 🔗 Current URL: https://script.google.com/macros/s/AKfycbxEPeVVR0OzN8A3GrfDAiXVuI5TMiDzJpyKO2hNXsxQihdjHgdfy6oN794OBlEtWG7g/exec
+config.js:76 [API RESPONSE] getTechnicians Object
+dashboard.html:4125 ✅ Technicians loaded: Array(4)
+dashboard.html:4127 🧹 Clean technicians stored: Array(4)
+dashboard.html:4066 🔍 reportTechnicianSelector found: true attempt: 0
+dashboard.html:4082 🧹 Technicians after trim/filter/deduplicate: Array(4)
+dashboard.html:4096 ✅ Technician appended: รัฐพงษ์ ใจวงศ์คำ
+dashboard.html:4096 ✅ Technician appended: มนัส พูลเกษม
+dashboard.html:4096 ✅ Technician appended: ชูเกียรติ กุศลสถิตย์
+dashboard.html:4096 ✅ Technician appended: สันติภาพ พัฒนบวรวงศ์
+dashboard.html:4107 ✅ reportTechnicianSelector bind success
+dashboard.html:4108 📌 First option text: -- รวมทุกคน --
+dashboard.html:4109 📊 Total options in dropdown: 5
+config.js:76 [API RESPONSE] getDashboardData Object
+dashboard.html:4172 Dashboard data received: Object
+dashboard.html:4188 📨 Data response received: Object
+dashboard.html:4373 📊 Chart data processed: Object
+dashboard.html:4222 ✅ Data loaded successfully: 0 items
+config.js:57 [API CALL] getPendingWithdrawalRequestCountForDashboard Array(1)
+dashboard.html:5394 📊 Statistics updated: Object
+config.js:76 [API RESPONSE] getAvailableReportMonths Object
+dashboard.html:6949 Received months data: Array(0)
+dashboard.html:4436 📊 Updating dashboard charts.
+dashboard.html:4611 ✅ Status chart updated successfully with mandatory labels
+dashboard.html:4874 ✅ Technician chart updated successfully (mobile safe)
+dashboard.html:4953 ✅ Current stock chart updated successfully
+dashboard.html:5050 ✅ Stock movement chart updated successfully
+dashboard.html:5204 ✅ Low stock alert updated successfully
+config.js:76 [API RESPONSE] getPendingWithdrawalRequestCountForDashboard Object
+config.js:76 [API RESPONSE] apiHealthCheck Object
+config.js:135 ✅ API Health Check PASSED: Object

@@ -1846,7 +1846,7 @@ body {
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png" alt="โลโก้ ระบบแจ้งซ่อมออนไลน์">
+                <img id="appLogoImg" src="<?= typeof logoUrl !== 'undefined' ? logoUrl : 'https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png' ?>" onerror="this.onerror=null; this.src='https://img2.pic.in.th/pic/SDULP-FIX52933b8334b3dd59.png';" alt="โลโก้ ระบบแจ้งซ่อมออนไลน์">
                 <h1>ระบบแจ้งซ่อมออนไลน์</h1>
             </div>
             <div class="nav-buttons">
@@ -2257,9 +2257,30 @@ body {
             initializeSystem();
         });
 
+        function loadDynamicLogo() {
+            try {
+                if (typeof google !== 'undefined' && google.script && google.script.run) {
+                    google.script.run
+                        .withSuccessHandler(function(url) {
+                            if (url) {
+                                const logoEl = document.getElementById('appLogoImg');
+                                if (logoEl) logoEl.src = url;
+                            }
+                        })
+                        .withFailureHandler(function(err) {
+                            console.warn('Could not fetch dynamic logo:', err);
+                        })
+                        .getLogoPublicUrl();
+                }
+            } catch (e) {
+                console.warn('loadDynamicLogo error:', e);
+            }
+        }
+
         function initializeSystem() {
             console.log('Initializing repair system...');
             try {
+                loadDynamicLogo();
                 setCurrentDate();
                 generateTemporarySequenceNumber();
                 initializeImageUpload();

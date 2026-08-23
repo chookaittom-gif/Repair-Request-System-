@@ -1,0 +1,33 @@
+# Dependencies & Environments
+node_modules/
+.env
+.env.*
+
+# Editor & Agent configs
+.agents/
+.gemini/
+.claude/
+.cursor/
+.vs/
+.understand-anything/
+.impeccable/
+.specify/
+
+# Browser & Audit profiles
+**/chrome-cdp-profile*/
+**/Crashpad/
+**/DawnGraphiteCache/
+**/Cache/
+**/Code Cache/
+**/GPUCache/
+
+# Submodules / plugins
+role-specific-plugins/
+
+# OS specific
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Clasp local auth
+.clasprc.json
