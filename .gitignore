@@ -3,6 +3,9 @@ node_modules/
 .env
 .env.*
 
+# Backend (deployed on Google Apps Script)
+code.gs
+
 # Editor & Agent configs
 .agents/
 .gemini/

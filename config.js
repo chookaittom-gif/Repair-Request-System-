@@ -1,6 +1,6 @@
 // config.js
 // ⚠️ กรุณาใส่ URL ของ Apps Script Web App ที่ Deploy เป็น API ที่นี่
-const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxEPeVVR0OzN8A3GrfDAiXVuI5TMiDzJpyKO2hNXsxQihdjHgdfy6oN794OBlEtWG7g/exec';
+const APP_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbxgmj_6bO9OFd3yqHv-iJq6Ebl4ylTm7b0qwc7MnNypXVe5E4XRfaLTVud_JQxRKi6JbQ/exec';
 
 (function() {
   // ดักจับ Query Params เพื่อสลับหน้าอัตโนมัติสำหรับ GitHub Pages
