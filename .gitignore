@@ -21,7 +21,16 @@ node_modules/
 **/Code Cache/
 **/GPUCache/
 
-# Submodules / plugins
+# Documentation, manual assets, temp fix notes
+Pic คู่มือ/
+QR code/
+fix/
+picfix/
+คู่มือระบบแจ้งซ่อม 2.0/
+Code/
+*.txt
+AGENTS.md
+skills-lock.json
 role-specific-plugins/
 
 # OS specific
@@ -31,3 +40,5 @@ Desktop.ini
 
 # Clasp local auth
 .clasprc.json
+.clasp.json
+.claspignore
